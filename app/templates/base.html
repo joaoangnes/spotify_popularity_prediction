@@ -3,11 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="{{url_for('static', filename='libs/chart.js')}}"></script>
+    <style>
+        #navigation ul {
+            background-color: aquamarine;
+            list-style: none;
+            padding: 0;
+        }
+        #navigation li {
+            background-color: greenyellow;
+
+        }
+    </style>
     <title>{% block title %}Titulo Padrão{% endblock title %}</title>
 </head>
 <body>
+    <nav id="navigation">
+        <ul>
+            <li>Stream per release year</li>
+            <li>Artist releases per year</li>
+            <li>Popularity by platform</li>
+            <li>Song popularity</li>
+        </ul>
+    </nav>
     {% block body %}Corpo Padrão{% endblock body %}
+    <script src="{{url_for('static', filename='script/main.js')}}"></script>
 </body>
 </html>

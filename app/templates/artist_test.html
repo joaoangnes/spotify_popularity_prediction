@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Home{% endblock title %}
+{% block title %}Artist{% endblock title %}
 
 {% block body %}
 
-<h1>Stream per release year</h1>
+<h1>{{name}} releases per year</h1>
 
-<div id="app" style="height: 80vh; width: 80%; margin: auto;">
+<div style="height: 80vh; width: 80%; margin: auto;">
     <canvas id="myChart"></canvas>
 </div>
 
@@ -16,7 +16,7 @@
     const data = {
         labels: labels,
         datasets: [{
-            label: 'Streams',
+            label: '{{name}} releases',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: {{ data | tojson}},
