@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "feature-engine>=1.8.2",
+    "flask>=3.1.0",
     "ipykernel>=6.29.5",
     "lightgbm>=4.5.0",
     "pandas>=2.2.3",

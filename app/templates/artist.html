@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Artist{% endblock title %}
+
+{% block body %}
+
+<h1>{{name}} releases per year</h1>
+
+<div style="height: 80vh; width: 80%; margin: auto;">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+    const labels = {{ labels | tojson}};
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: '{{name}} releases',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: {{ data | tojson}},
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            maintainAspectRatio: false,
+            responsive: true
+        }
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+</script>
+
+{% endblock body %}
