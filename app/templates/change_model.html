@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Change Model{% endblock title %}
+
+{% block body %}
+
+<style>
+    input[type="file"] {
+        display: none;
+    }
+    #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    #container button {
+        display: flex;
+        align-items: center;
+        border: none;
+        justify-content: center;
+        background-color: #631A86;
+        font-size: 1.12rem;
+        padding: .6em;
+        padding-left: 1em;
+        width: 14em;
+        height: 2.8em;
+        text-decoration: none;
+        color: white;
+        border-radius: 0.6em;
+        box-shadow: rgba(100, 100, 111, 0.6) 0px 2px 6px 0px;
+
+        margin: 0.4em;
+        margin-top: 2em;
+    }
+    #container button:hover {
+        box-shadow: rgba(100, 100, 111, 0.6) 0px 6px 12px 0px;
+        filter: brightness(125%);
+    }
+    #container button:active {
+        box-shadow: rgba(100, 100, 111, 0.6) 0px 0px 0px 0px;
+        filter: brightness(80%);
+    }
+    #data-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #options-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    #options-container button {
+        display: flex;
+        align-items: center;
+        border: none;
+        justify-content: center;
+        background-color: #F45866;
+        font-size: 1.12rem;
+        padding: .6em;
+        padding-left: 1em;
+        width: 14em;
+        height: 2.8em;
+        text-decoration: none;
+        color: black;
+        border-radius: 0.6em;
+        box-shadow: rgba(100, 100, 111, 0.6) 0px 2px 6px 0px;
+
+        margin: 0.4em;
+    }
+    #options-container button:hover {
+        box-shadow: rgba(100, 100, 111, 0.6) 0px 6px 12px 0px;
+        filter: brightness(125%);
+    }
+    #options-container button:active {
+        box-shadow: rgba(100, 100, 111, 0.6) 0px 0px 0px 0px;
+        filter: brightness(80%);
+    }
+    #params-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: 4em;
+        padding: 2em;
+        border-radius: 2em;
+        box-shadow: rgba(100, 100, 111, 0.6) 0px 2px 6px 0px;
+    }
+    #params-container input {
+        margin: 0.2em;
+        padding: 0.6em;
+        border-radius: 0.6em;
+        border-width: 1px;
+    }
+</style>
+<form id="container">
+    <div id="data-container">
+        <div id="options-container">
+            <button>Model 1</button>
+            <button>Model 2</button>
+            <button>Model 3</button>
+            <button>Model 4</button>
+        </div>
+        <div id="params-container">
+            <input type="text" placeholder="Parameter 1" />
+            <input type="text" placeholder="Parameter 2" />
+            <input type="text" placeholder="Parameter 3" />
+            <input type="text" placeholder="Parameter 4" />
+            <input type="text" placeholder="Parameter 5" />
+            <input type="text" placeholder="Parameter 6" />
+            <input type="text" placeholder="Parameter 7" />
+        </div>
+    </div>
+    <button type="submit">Fit Model</button>
+</form>
+
+{% endblock body %}
