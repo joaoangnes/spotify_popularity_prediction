@@ -8,6 +8,10 @@ def getCsv():
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
     return pd.read_csv("../datasource/spotify_most_streamed_songs.csv")
 
+@app.route('/change-model', methods=["GET"])
+def change_model():
+    return render_template(template_name_or_list='change_model.html')
+
 @app.route('/', methods=["GET"])
 def home():
     df = getCsv()
