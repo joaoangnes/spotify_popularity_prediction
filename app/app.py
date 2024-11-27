@@ -51,6 +51,13 @@ def getCsv():
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
     return pd.read_csv("../datasource/spotify_most_streamed_songs.csv")
 
+# recebe o arquivo do usuário para realizar o treinamento
+@app.route('/add-data', methods=['POST'])
+def add_data():
+    print(request.files)
+    
+    return redirect(url_for('home'))
+
 # ao ser chamado treina o novo modelo selecionado usando os parametros definidos pelo usuário
 # também define o modelo atual sendo utilizado
 @app.route('/fit-model', methods=['POST'])

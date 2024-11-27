@@ -138,6 +138,7 @@
                 <h1>Charts</h1>
                 <ul>
                     <li>
+                        <form id="add-data-form" action="/add-data" method="POST" enctype="multipart/form-data">
                         <label for="file-upload" id="custom-file-upload">
                             Add Data
                             <span class="icon">
@@ -147,7 +148,8 @@
                                 </svg>
                             </span>
                         </label>
-                        <input type="file" id="file-upload" accept="text/csv"/>
+                        <input type="file" id="file-upload" name="data" accept="text/csv" required onchange="addDataForm()"/>
+                    </form>
                     </li>
                     <li><a class="variant-btn" href="{{url_for('change_model')}}">Change Model</a></li>
                 </ul>
@@ -166,4 +168,10 @@
             <p>Bruno Dalagnol, Fabricio Bertoncello, João Angnes, João Lucas.</p>
         </footer>
     </body>
+    <script>
+        function addDataForm() {
+            var form = document.getElementById("add-data-form");
+            form.submit();
+        }
+    </script>
 </html>
