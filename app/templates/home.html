@@ -11,7 +11,7 @@
 </div>
 
 <script>
-    const labels = {{ labels | tojson}};
+    const labels = {{ labels | tojson }};
 
     const data = {
         labels: labels,
@@ -19,7 +19,7 @@
             label: 'Streams',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: {{ data | tojson}},
+            data: {{ data | tojson }},
         }]
     };
 

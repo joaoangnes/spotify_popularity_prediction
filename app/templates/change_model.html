@@ -47,14 +47,21 @@
         align-items: center;
         justify-content: center;
     }
-    #options-container {
+    #model-name {
+        padding-bottom: 0.8em;
+        font-weight: 100;
+        font-size: 2em;
+    }
+
+    #options-container, #options-container form {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 100%;
     }
-    #options-container button {
+
+    #options-container form button {
         display: flex;
         align-items: center;
         border: none;
@@ -69,14 +76,14 @@
         color: black;
         border-radius: 0.6em;
         box-shadow: rgba(100, 100, 111, 0.6) 0px 2px 6px 0px;
-
+        line-height: 1em;
         margin: 0.4em;
     }
-    #options-container button:hover {
+    #options-container form button:hover {
         box-shadow: rgba(100, 100, 111, 0.6) 0px 6px 12px 0px;
         filter: brightness(125%);
     }
-    #options-container button:active {
+    #options-container form button:active {
         box-shadow: rgba(100, 100, 111, 0.6) 0px 0px 0px 0px;
         filter: brightness(80%);
     }
@@ -97,25 +104,107 @@
         border-width: 1px;
     }
 </style>
-<form id="container">
+<div id="container">
+    <p id="model-name"></p>
     <div id="data-container">
         <div id="options-container">
-            <button>Model 1</button>
-            <button>Model 2</button>
-            <button>Model 3</button>
-            <button>Model 4</button>
+            <form id="change-form" action="/change-model" method="GET" id="container">
+                <button type="button" onclick="changeModel('RandomForestRegressor')">Random Forest Regressor</button>
+                <button type="button" onclick="changeModel('GradientBoostingRegressor')">Gradient Boosting Regressor</button>
+                <button type="button" onclick="changeModel('LightGBM')">Light GBM</button>
+                <button type="button" onclick="changeModel('AdaBoostRegressor')">Ada Boost Regressor</button>
+
+                <input id="model-input" name="model" type="hidden" name="model">
+            </form>
         </div>
-        <div id="params-container">
-            <input type="text" placeholder="Parameter 1" />
-            <input type="text" placeholder="Parameter 2" />
-            <input type="text" placeholder="Parameter 3" />
-            <input type="text" placeholder="Parameter 4" />
-            <input type="text" placeholder="Parameter 5" />
-            <input type="text" placeholder="Parameter 6" />
-            <input type="text" placeholder="Parameter 7" />
-        </div>
+
+        <form id="fit-form" action="/fit-model" method="POST" id="container">
+            <div id="params-container"></div>
+        </form>
     </div>
-    <button type="submit">Fit Model</button>
-</form>
+    <button type="submit" onclick="fitModel()">Fit Model</button>
+</div>
+
+<script>
+    const paramDefaults = {
+        'max_depth': {
+            title: 'Max Depth',
+            type: 'number',
+        }, 
+        'min_samples_leaf': {
+            title: 'Min Samples Leaf',
+            type: 'number',
+        },
+        'min_samples_split': {
+            title: 'Min Samples Split',
+            type: 'number',
+        },
+        'n_estimators': {
+            title: 'Nº Estimators',
+            type: 'number',
+        },
+        'learning_rate': {
+            title: 'Learning Rate',
+            type: 'number',
+        },
+        'num_leaves': {
+            title: 'Nº Leaves',
+            type: 'number',
+        },
+    }
+
+    const modelsDefaults = {
+        'RandomForestRegressor': 'Random Forest Regressor', 
+        'GradientBoostingRegressor': 'Gradient Boosting Regressor',
+        'LightGBM': 'Light GBM',
+        'AdaBoostRegressor': 'Ada Boost Regressor',
+    }
+
+    const paramContainer = document.getElementById("params-container")
+
+    const changeModelInput = document.getElementById("model-input")
+    const changeModelForm = document.getElementById("change-form")
+    const fitModelForm = document.getElementById("fit-form")
+    const modelName = document.getElementById("model-name")
+
+    function changeModel(model) {
+        changeModelInput.value = model
+        changeModelForm.submit()
+    }
+
+    function fitModel() { fitModelForm.submit() }
+
+    function loadModel(data){
+        const params = data.params
+
+        let genParams = `<input id="model-input" name="model" type="hidden" name="model" value="${data.model}">`
+        for (param in params) {
+            paramDefault = paramDefaults[param]
+            genParams += `
+            <div style="padding: 0.4em">
+                <p style="padding-left: 0.86em">${paramDefault.title}</p>
+                <input 
+                    type="${paramDefault.type}"
+                    id="${param}"
+                    name="${param}"
+                    placeholder="${paramDefault.title}"
+                    value="${params[param]}"
+                    required
+                />
+            </div>`
+        }
+
+        paramContainer.innerHTML = genParams
+        modelName.innerHTML = modelsDefaults[data.model]
+    }
+
+    {
+        // recupera os dados da api
+        const data = {{ data | tojson }}
+
+        // monta os parametros do modelo
+        loadModel(data)
+    }
+</script>
 
 {% endblock body %}
