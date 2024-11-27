@@ -1,0 +1,21 @@
+track_name,artist(s)_name,artist_count,released_year,released_month,released_day,in_spotify_playlists,in_spotify_charts,streams,in_apple_playlists,in_apple_charts,in_deezer_playlists,in_deezer_charts,in_shazam_charts,bpm,key,mode,danceability_%,valence_%,energy_%,acousticness_%,instrumentalness_%,liveness_%,speechiness_%,cover_url
+Summer Bliss,DJ Sunshine,1,2024,1,15,200,20,15000000,10,5,12,10,5,120,C,Major,85,50,75,10,0,10,5,https://i.scdn.co/image/example1
+Urban Jungle,Urban Beat,2,2024,2,20,150,15,20000000,15,10,16,12,10,125,D,Minor,80,55,80,15,0,15,10,https://i.scdn.co/image/example2
+Starlight Dreams,Dream Catcher,1,2024,3,25,300,30,25000000,20,15,18,15,15,130,E,Major,75,60,85,20,0,20,15,https://i.scdn.co/image/example3
+Ocean Wave,Wave Riders,3,2024,4,10,250,25,18000000,25,20,24,18,20,128,F,Minor,70,65,90,25,0,25,20,https://i.scdn.co/image/example4
+Electric Groove,Electro Sparks,2,2024,5,5,400,40,22000000,5,25,25,20,25,135,G,Major,65,70,95,30,0,30,25,https://i.scdn.co/image/example5
+Retro Vibes,Retro Duo,2,2024,6,14,350,35,30000000,30,30,26,22,30,140,A,Minor,60,75,100,35,0,35,30,https://i.scdn.co/image/example6
+Calm Horizon,Calm Artists,1,2024,7,28,100,10,12000000,35,35,28,24,35,142,B,Major,55,80,65,40,0,40,35,https://i.scdn.co/image/example7
+Velvet Nights,Velvet Voice,1,2024,8,7,450,45,28000000,40,40,30,26,40,110,C#,Minor,50,85,60,45,0,45,40,https://i.scdn.co/image/example8
+Golden Hour,Golden Tunes,1,2024,9,12,500,50,32000000,50,50,35,30,45,108,D#,Major,45,90,55,50,0,50,45,https://i.scdn.co/image/example9
+Echoes of Time,Echo Collective,3,2024,10,23,600,60,40000000,60,55,40,35,50,118,F#,Minor,40,95,50,55,0,55,50,https://i.scdn.co/image/example10
+Midnight Pulse,Night Pulse,2,2024,11,17,700,70,45000000,70,60,45,40,55,116,G#,Major,35,40,45,60,0,60,55,https://i.scdn.co/image/example11
+Firestorm,Fire Band,4,2024,12,3,800,80,50000000,80,70,50,45,60,132,A#,Minor,30,35,40,65,0,65,60,https://i.scdn.co/image/example12
+Crystal Symphony,Crystal Sounds,3,2024,1,9,900,90,60000000,90,80,55,50,65,134,C,Major,25,30,35,70,0,70,65,https://i.scdn.co/image/example13
+Twilight Melody,Twilight Duo,2,2024,2,19,100,10,2000000,100,90,60,55,70,144,D,Minor,20,25,30,75,0,75,70,https://i.scdn.co/image/example14
+Aurora Borealis,Aurora Ensemble,4,2024,3,8,110,11,10000000,110,100,65,60,75,138,E,Major,15,20,25,80,0,80,75,https://i.scdn.co/image/example15
+Soulful Stride,Soulful Notes,1,2024,4,11,120,12,1800000,120,110,70,65,80,148,F,Minor,10,15,20,85,0,85,80,https://i.scdn.co/image/example16
+Lunar Glow,Lunar Stars,2,2024,5,24,130,13,27000000,130,120,75,70,85,126,G,Major,5,10,15,90,0,90,85,https://i.scdn.co/image/example17
+Mystic Breeze,Mystic Waves,3,2024,6,30,140,14,37000000,140,130,80,75,90,136,A,Minor,95,5,10,95,0,95,90,https://i.scdn.co/image/example18
+Sapphire Skies,Skyline Sound,1,2024,7,18,150,15,47000000,150,140,85,80,95,146,B,Major,90,100,5,5,0,5,95,https://i.scdn.co/image/example19
+Serenity,Silent Notes,1,2024,8,21,160,16,2000000,160,150,90,85,100,156,C#,Minor,85,95,95,10,0,10,100,https://i.scdn.co/image/example20
