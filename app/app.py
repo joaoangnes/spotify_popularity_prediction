@@ -12,7 +12,7 @@ def getCsv():
 @app.route('/fit-model', methods=['POST'])
 def fit_model():
     global currentModel
-    
+
     currentModel = request.form['model']
 
     print(request.form)
@@ -96,9 +96,13 @@ def home():
     
     return render_template(template_name_or_list='home.html', labels=labels, data=data)
 
-@app.route('/a/<string:name>', methods=["GET"])
-def artist(name: str):
-    name = name.replace('+', ' ')
+@app.route('/artist_select', methods=["GET"])
+def artist_select():
+    return render_template(template_name_or_list='artist_select.html')
+
+@app.route('/a', methods=["GET"])
+def artist():
+    name = request.args['name'].replace('+', ' ')
     df = getCsv()
     for col in df:
         print(col)
