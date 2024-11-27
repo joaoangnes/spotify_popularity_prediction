@@ -3,75 +3,87 @@ import pandas as pd
 import os
 
 app = Flask(__name__)
+availableModels = {
+    'RandomForestRegressor': {
+        'model': 'RandomForestRegressor',
+        'params': {
+            'max_depth': 30,
+            'min_samples_leaf': 4, 
+            'min_samples_split': 2, 
+            'n_estimators': 100
+        }
+    },
+    'GradientBoostingRegressor': {
+        'model': 'GradientBoostingRegressor',
+        'params': {
+            'learning_rate': 0.05, 
+            'max_depth': 3, 
+            'n_estimators': 100
+        }
+    },
+    'LightGBM': {
+        'model': 'LightGBM',
+        'params': {
+            'learning_rate': 0.1, 
+            'max_depth': 3, 
+            'n_estimators': 50, 
+            'num_leaves': 31
+        }
+    },
+    'AdaBoostRegressor': {
+        'model': 'AdaBoostRegressor',
+        'params': {
+            'learning_rate': 0.01, 
+            'n_estimators': 100
+        }
+    }
+}
+
 currentModel = 'RandomForestRegressor'
+currentParams = {
+    'max_depth': 30,
+    'min_samples_leaf': 4,
+    'min_samples_split': 2,
+    'n_estimators': 100,
+}
 
 def getCsv():
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
     return pd.read_csv("../datasource/spotify_most_streamed_songs.csv")
 
+# ao ser chamado treina o novo modelo selecionado usando os parametros definidos pelo usuário
+# também define o modelo atual sendo utilizado
 @app.route('/fit-model', methods=['POST'])
 def fit_model():
-    global currentModel
+    global currentModel, currentParams
 
-    currentModel = request.form['model']
+    # define o novo modelo selecionado
+    args = request.form.to_dict()
+    currentModel = args.pop("model")
+    currentParams = args
 
-    print(request.form)
+    # salva o modelo caso queira retornar ao mesmo
+    availableModels[currentModel]['params'] = currentParams
+
     return redirect(url_for('change_model'))
 
+# tela para trocar de modelo
 @app.route('/change-model', methods=["GET"])
 def change_model():
-    global currentModel
+    global currentModel, currentParams
 
-    data = {
-        'model': "RandomForestRegressor",
-        'params': {
-            'max_depth': 30,
-            'min_samples_leaf': 4,
-            'min_samples_split': 2,
-            'n_estimators': 100,
-        }
+    # modelo usando as configuraçoes atuais
+    model = {
+        'model': currentModel,
+        'params': currentParams
     }
 
-    match request.args.get('model', currentModel):
-        case 'RandomForestRegressor':
-            data = {
-                'model': 'RandomForestRegressor',
-                'params': {
-                    'max_depth': 0,
-                    'min_samples_leaf': 0, 
-                    'min_samples_split': 0, 
-                    'n_estimators': 0
-                }
-            }
-        case 'GradientBoostingRegressor':
-            data = {
-                'model': 'GradientBoostingRegressor',
-                'params': {
-                    'learning_rate': 0.05, 
-                    'max_depth': 3, 
-                    'n_estimators': 100
-                }
-            }
-        case 'LightGBM':
-            data = {
-                'model': 'LightGBM',
-                'params': {
-                    'learning_rate': 0.1, 
-                    'max_depth': 3, 
-                    'n_estimators': 50, 
-                    'num_leaves': 31
-                }
-            }
-        case 'AdaBoostRegressor':
-            data = {
-                'model': 'AdaBoostRegressor',
-                'params': {
-                    'learning_rate': 0.01, 
-                    'n_estimators': 100
-                }
-            }
+    # busca o modelo selecionado
+    # definindo uma configuração padrão para o mesmo
+    modelName = request.args.get('model', None)
+    if modelName: model = availableModels[modelName]
 
-    return render_template(template_name_or_list='change_model.html', data=data)
+    return render_template(template_name_or_list='change_model.html', data=model)
 
 
 @app.route('/', methods=["GET"])
