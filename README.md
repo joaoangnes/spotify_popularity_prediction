@@ -5,6 +5,8 @@ This project offers an interactive platform for dynamic data visualization and p
 Users can upload their own `.csv` files for analysis or rely on an available **Kaggle dataset** [link](https://www.kaggle.com/datasets/abdulszz/spotify-most-streamed-songs). containing Spotify music data. The system allows data exploration, model training, and stream predictions for uploaded datasets.
 
 ---
+## Home Page
+![image](https://github.com/user-attachments/assets/6b4b67ee-c5fb-4b4d-9575-36adff62fef2)
 
 ## Features
 
