@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Predição de Streams{% endblock title %}
+
+{% block body %}
+<h1 id="chart-title">Predição de Streams por Modelo</h1>
+<p id="page-description">Esta tabela apresenta as previsões de streams geradas pelo modelo atual, seguidas pelos dados do conjunto.</p>
+
+<div id="table-container">
+    {{ table_html|safe }}
+</div>
+
+<style>
+    #page-description {
+        text-align: center;
+        font-size: 1rem;
+        margin: 0 0 1em 0;
+        color: #333;
+    }
+
+    #table-container {
+        overflow-y: auto;
+        max-height: calc(100vh - 8em); /* Ajuste para cabeçalho e margem */
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: rgba(100, 100, 111, 0.6) 0px 4px 10px 0px;
+        padding: 0.5em;
+        background-color: white;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.9rem;
+    }
+
+    .data-table th, .data-table td {
+        padding: 0.8em;
+        border: 1px solid #ddd;
+    }
+
+    .data-table th {
+        background-color: #631A86;
+        color: white;
+    }
+
+    .data-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .data-table tr:hover {
+        background-color: rgba(99, 26, 134, 0.1);
+    }
+</style>
+{% endblock body %}
